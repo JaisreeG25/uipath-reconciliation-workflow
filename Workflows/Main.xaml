@@ -1,0 +1,9 @@
+<xaml>
+  <Activity x:TypeArguments="x:Object" x:Class="Main">
+    <Sequence>
+      <!-- Your workflow activities here -->
+      <WriteLine Text="Orchestrator workflow initialized" />
+      <!-- Include more activities specific to the reconciliation process -->
+    </Sequence>
+  </Activity>
+</xaml>
