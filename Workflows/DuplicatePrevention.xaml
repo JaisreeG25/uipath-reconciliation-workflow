@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Add your UiPath workflow below --><Activity mc:Ignorable="sap" x:Class="DuplicatePrevention" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation">
+  <x:Members>
+    <x:Property Name="DisplayName" Type="InArgument(x:String)"/>
+  </x:Members>
+  <Sequence DisplayName="Duplicate Prevention Logic">
+    <Assign x:Name="Assign_DuplicateFlag" DisplayName="Assign Duplicate Flag" To="duplicateFlag" Value="False"/>
+    <If Condition="duplicatesFound">
+      <Then>
+        <Assign x:Name="Assign_SetDuplicateFlag" DisplayName="Set Duplicate Flag" To="duplicateFlag" Value="True"/>
+        <WriteLine Text="Duplicate entry found!"/>
+      </Then>
+      <Else>
+        <WriteLine Text="No duplicates found."/>
+      </Else>
+    </If>
+  </Sequence>
+</Activity>
