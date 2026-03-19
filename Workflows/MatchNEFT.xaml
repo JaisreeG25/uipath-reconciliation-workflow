@@ -1,0 +1,38 @@
+<Workflow xmlns="http://schemas.uipath.com/workflow/activities" 
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+          xmlns:s="http://schemas.microsoft.com/netfx/2009/xaml/schema" 
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+          xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+          mc:Ignorable="d" 
+          d:DesignHeight="300" d:DesignWidth="400">
+  <x:Object>
+    <s:Sequence>
+      <s:Assign x:TypeArguments="uiPath.ReconciliationModel.NEFTTransaction[]" DisplayName="Fetch NEFT Transactions" To="neftTransactions" Value="FetchNEFTTransactions()"/>
+      <s:Assign x:TypeArguments="System.Collections.Generic.List<uiPath.ReconciliationModel.MatchingResult>">
+        <x:Members>
+          <uiPath.ReconciliationModel.MatchingResult> 
+            <Name>MatchingResults</Name>
+          </uiPath.ReconciliationModel.MatchingResult>
+        </x:Members>
+      </s:Assign>
+      <s:ForEach x:TypeArguments="uiPath.ReconciliationModel.NEFTTransaction" DisplayName="Match Transactions" In="neftTransactions">
+        <s:InvokeMethod x:TypeArguments="System.Boolean" DisplayName="Check Transaction Match" 
+          TargetObject="MatchingLogic" 
+          MethodName="IsTransactionMatched">
+          <s:InArguments>
+            <x:Argument x:TypeArguments="uiPath.ReconciliationModel.NEFTTransaction`" Name="transaction" Value="item"/>
+          </s:InArguments>
+          <s:OutArguments>
+            <x:Argument x:TypeArguments="System.Boolean" Name="isMatched"/>
+          </s:OutArguments>
+        </s:InvokeMethod>
+        <s:If Condition="isMatched">
+          <s:Then>
+            <s:AddToCollection x:TypeArguments="uiPath.ReconciliationModel.MatchingResult" Collection="MatchingResults" Item="new uiPath.ReconciliationModel.MatchingResult{MatchedTransaction=item, MatchDate=now()}" />
+          </s:Then>
+        </s:If>
+      </s:ForEach>
+      <s:LogMessage DisplayName="Log Matching Results" Message="Matching result count: " + MatchingResults.Count.ToString() />
+    </s:Sequence>
+  </x:Object>
+</Workflow>
