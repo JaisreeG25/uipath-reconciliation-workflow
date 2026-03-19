@@ -1,0 +1,11 @@
+<WorkflowDefinition>
+  <Name>Main</Name>
+  <Description>UiPath main reconciliation workflow orchestrator</Description>
+  <!-- Add your workflow activities here -->
+  <Activity>
+    <Type>Sequence</Type>
+    <Activities>
+      <!-- Define your workflow steps here -->
+    </Activities>
+  </Activity>
+</WorkflowDefinition>
