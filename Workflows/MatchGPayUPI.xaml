@@ -1,0 +1,13 @@
+<xaml xmlns="http://schemas.microsoft.com/netfx/2009/xaml">
+  <Activity mc:Ignorable="s sap" x:Class="Workflows.MatchGPayUPI"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:s="clr-namespace:System;assembly=mscorlib"
+            xmlns:sap="clr-namespace:System.Activities.Statements;assembly=System.Activities"
+            xmlns:ui="http://schemas.uipath.com/workflow/activities">
+    <s:Sequence>
+        <ui:Log Message="Starting GPay/UPI transaction matching..." Level="Info" />
+        <!-- Logic to match GPay/UPI transactions goes here -->
+        <ui:Log Message="Transaction matching completed." Level="Info" />
+    </s:Sequence>
+</xaml>
