@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<workflow>
+  <activities>
+    <Assign>
+      <To>outputSheet</To>
+      <Value>New DataTable()</Value>
+    </Assign>
+    <Add DataTable>
+      <DataTable>outputSheet</DataTable>
+      <ColumnName>Column1</ColumnName>
+      <ColumnName>Column2</ColumnName>
+    </Add>
+    <InvokeMethod>
+      <TargetObject>outputSheet</TargetObject>
+      <MethodName>AddRow</MethodName>
+      <Parameters>
+        <Parameter>
+          <Name>values</Name>
+          <Value>{"Value1", "Value2"}</Value>
+        </Parameter>
+      </Parameters>
+    </InvokeMethod>
+    <WriteRange>
+      <DataTable>outputSheet</DataTable>
+      <SheetName>OutputData</SheetName>
+      <Range>A1</Range>
+    </WriteRange>
+  </activities>
+</workflow>
